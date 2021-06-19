@@ -1,0 +1,10 @@
+{
+    BasedOnStyle: Webkit,
+    IndentWidth: 4,
+    TabWidth: 4,
+    BreakBeforeBraces: Attach,
+    BreakConstructorInitializers: BeforeColon,
+    ColumnLimit: 120,
+    ConstructorInitializerAllOnOneLineOrOnePerLine: 'true',
+    AlignConsecutiveAssignments: 'true'
+}
