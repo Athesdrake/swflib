@@ -24,7 +24,7 @@ jobs:
         uses: lukka/get-cmake@latest
 
       - name: Install dependencies with vcpkg
-        uses: lukka/run-vcpkg@main
+        uses: lukka/run-vcpkg@v7
         with:
           vcpkgArguments: zlib liblzma pybind11
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
@@ -32,7 +32,7 @@ jobs:
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
 
       - name: Build with CMake
-        uses: lukka/run-cmake@main
+        uses: lukka/run-cmake@v3
         with:
           useVcpkgToolchainFile: true
           buildWithCMake: true
