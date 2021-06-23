@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+      - v*
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          os: ubuntu-latest
+          triplet: x64-linux
+        include:
+          os: windows-latest
+          triplet: x64-windows
+        include:
+          os: macos-latest
+          triplet: x64-osx
+    env:
+      buildDir: "${{ github.workspace }}/build/${{ matrix.os }}/"
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run vcpkg
+        uses: lukka/get-cmake@latest
+        with:
+            vcpkgArguments: zlib liblzma pybind11
+            vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+            vcpkgTriplet: ${{ matrix.triplet }}
+            vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
+
+      - name: Build with CMake
+        uses: lukka/run-cmake@main
+        with:
+          useVcpkgToolchainFile: true
+          buildWithCMake: true
+          buildDirectory: ${{ env.buildDir }}
