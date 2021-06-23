@@ -19,8 +19,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Run vcpkg
+      - name: Get CMake
         uses: lukka/get-cmake@latest
+
+      - name: Install dependencies with vcpkg
+        uses: lukka/run-vcpkg@main
         with:
           vcpkgArguments: zlib liblzma pybind11
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
