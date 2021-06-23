@@ -11,10 +11,13 @@ jobs:
         include:
           - os: ubuntu-latest
             triplet: x64-linux
+            pybind-triplet: x64-linux
           - os: windows-latest
             triplet: x64-windows-static
+            pybind-triplet: x64-windows
           - os: macos-latest
             triplet: x64-osx
+            pybind-triplet: x64-osx
     env:
       buildDir: "${{ github.workspace }}/build/${{ matrix.os }}/"
 
@@ -26,7 +29,7 @@ jobs:
       - name: Install dependencies with vcpkg
         uses: lukka/run-vcpkg@v7
         with:
-          vcpkgArguments: zlib liblzma pybind11
+          vcpkgArguments: zlib liblzma pybind11:${{ matrix.pybind-triplet }}
           vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
           vcpkgTriplet: ${{ matrix.triplet }}
           vcpkgGitCommitId: 44d94c2edbd44f0c01d66c2ad95eb6982a9a61bc
