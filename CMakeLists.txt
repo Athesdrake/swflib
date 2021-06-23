@@ -10,6 +10,11 @@ add_library(swflib SHARED "")
 add_subdirectory(lib)
 add_subdirectory(tests)
 
+file(READ "include/swflib.h" _SWFLIB)
+string(REGEX MATCH "version[ \t]+=[ \t]+\"([^\"]+)\"" _ ${_SWFLIB})
+set(VERSION ${CMAKE_MATCH_1})
+message(STATUS "swflib version: ${VERSION}")
+
 find_package(ZLIB REQUIRED)
 find_package(LibLZMA REQUIRED)
 target_link_libraries(swflib PRIVATE ZLIB::ZLIB)
