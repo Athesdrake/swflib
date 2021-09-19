@@ -12,6 +12,17 @@ template <typename T, typename... Args> static void pt_context(T value, Args... 
     pt_context(args...);
 }
 
+#define assert(value, ...)                                                                                             \
+    {                                                                                                                  \
+        if (!(value)) {                                                                                                \
+            std::cerr << __FILE__ << ":" << __LINE__ << " In function '" << __PRETTY_FUNCTION__ << "':\n\t"            \
+                      << "Assertation failed, expected a true value.\n\tContext:";                                     \
+            pt_context(__VA_ARGS__);                                                                                   \
+            std::cerr << "\n\n";                                                                                       \
+            std::abort();                                                                                              \
+        }                                                                                                              \
+    }
+
 #define assert_equal(value, expecting, ...)                                                                            \
     {                                                                                                                  \
         if ((value) != (expecting)) {                                                                                  \
