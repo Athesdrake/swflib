@@ -56,9 +56,9 @@ bool StreamReader::end() { return ptr == end_buffer; }
 
 bool StreamReader::valid() const { return buffer != nullptr && ptr < end_buffer; }
 
-size_t StreamReader::size() const { return size_t(end_buffer - buffer); }
-
+size_t StreamReader::size() const { return end_buffer - buffer; }
 size_t StreamReader::remaining() const { return end_buffer - ptr; }
+size_t StreamReader::pos() const { return ptr - buffer; }
 
 StreamReader::operator bool() const { return valid(); }
 

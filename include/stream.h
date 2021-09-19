@@ -34,6 +34,8 @@ public:
         : StreamReader((const uint8_t*)buffer, (const uint8_t*)end, managed) { }
     /* Creates a new StreamReader (managed by default) from the buffer. */
     StreamReader(const uint8_t* buffer, const uint8_t* end, bool managed = true);
+    /* Creates a new StreamReader from a vector. */
+    StreamReader(std::vector<uint8_t>& buffer) : StreamReader(buffer.data(), buffer.data() + buffer.size(), false) {};
     ~StreamReader();
 
     /* Creates a new StreamReader from the content of a file. It supports windows API to read data faster. */
@@ -45,6 +47,8 @@ public:
     bool valid() const;
     /* Return the remaining bytes in the buffer. */
     size_t remaining() const;
+    /* Return the current position in the buffer. */
+    size_t pos() const;
     /* Return the total size of the buffer. */
     size_t size() const;
     /* Reset the position to the start of the buffer. */
