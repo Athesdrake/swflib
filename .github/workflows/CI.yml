@@ -44,5 +44,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: "swflib-${{ matrix.os }}.so"
+          name: "swflib-${{ runner.os }}.so"
           path: "${{ env.buildDir }}/libswflib.so"
