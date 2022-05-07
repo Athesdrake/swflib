@@ -1,5 +1,5 @@
 #pragma once
-#include "Tag.h"
+#include "Tag.hpp"
 
 namespace swf {
 /* Attributes value */

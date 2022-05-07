@@ -1,5 +1,5 @@
-#include "abc/AbcFile.h"
-#include "modules.h"
+#include "abc/AbcFile.hpp"
+#include "modules.hpp"
 #include <stdexcept>
 
 using namespace swf::abc;

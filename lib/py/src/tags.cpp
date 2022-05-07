@@ -1,5 +1,5 @@
-#include "swf/tags/tags.h"
-#include "modules.h"
+#include "swf/tags/tags.hpp"
+#include "modules.hpp"
 
 // Make a trampoline
 class PyTag : public swf::Tag {

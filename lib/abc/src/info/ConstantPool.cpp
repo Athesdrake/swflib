@@ -1,5 +1,5 @@
-#include "abc/info/ConstantPool.h"
-#include "abc/AbcFile.h"
+#include "abc/info/ConstantPool.hpp"
+#include "abc/AbcFile.hpp"
 #include <cmath>
 
 namespace swf::abc {

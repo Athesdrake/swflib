@@ -1,4 +1,4 @@
-#include "swf/tags/UnknownTag.h"
+#include "swf/tags/UnknownTag.hpp"
 
 namespace swf {
 void UnknownTag::read(StreamReader&& stream) { data = std::move(stream); }

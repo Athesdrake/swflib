@@ -1,4 +1,4 @@
-#include "swf/tags/MetadataTag.h"
+#include "swf/tags/MetadataTag.hpp"
 
 namespace swf {
 void MetadataTag::read(StreamReader&& stream) { metadata = stream.readString(); }

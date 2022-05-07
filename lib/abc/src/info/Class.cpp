@@ -1,5 +1,5 @@
-#include "abc/info/Class.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Class.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf::abc {
 Class::Class(AbcFile* abc) : abc(abc) {

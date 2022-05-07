@@ -1,0 +1,12 @@
+#pragma once
+#include "DefineBinaryDataTag.hpp"
+#include "DoABCTag.hpp"
+#include "EndTag.hpp"
+#include "FileAttributesTag.hpp"
+#include "MetadataTag.hpp"
+#include "ProductInfoTag.hpp"
+#include "ScriptLimitsTag.hpp"
+#include "SetBackgroundColorTag.hpp"
+#include "SymbolClassTag.hpp"
+#include "Tag.hpp"
+#include "UnknownTag.hpp"

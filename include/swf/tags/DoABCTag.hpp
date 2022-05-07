@@ -1,6 +1,6 @@
 #pragma once
-#include "Tag.h"
-#include "abc/AbcFile.h"
+#include "Tag.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf {
 /* Defines the code to be executed in the AVM2.

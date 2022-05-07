@@ -1,5 +1,5 @@
-#include "swflib.h"
-#include "test.h"
+#include "swflib.hpp"
+#include "test.hpp"
 #include <array>
 
 void test_stream_reader(const uint8_t* buffer, size_t length) {

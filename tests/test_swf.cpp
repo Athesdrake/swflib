@@ -1,5 +1,5 @@
-#include "swflib.h"
-#include "test.h"
+#include "swflib.hpp"
+#include "test.hpp"
 #include <algorithm>
 #include <cmath>
 

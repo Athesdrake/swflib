@@ -1,4 +1,4 @@
-#include "swf/tags/ScriptLimitsTag.h"
+#include "swf/tags/ScriptLimitsTag.hpp"
 
 namespace swf {
 void ScriptLimitsTag::read(StreamReader&& stream) {

@@ -1,4 +1,4 @@
-#include "modules.h"
+#include "modules.hpp"
 
 PYBIND11_MODULE(_swflib, m) {
     m.doc()     = "A swf parser made in c++";

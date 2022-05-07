@@ -1,13 +1,13 @@
 #pragma once
-#include "common.h"
-#include "info/Class.h"
-#include "info/ConstantPool.h"
-#include "info/Exception.h"
-#include "info/Method.h"
-#include "info/Multiname.h"
-#include "info/Namespace.h"
-#include "info/Script.h"
-#include "info/Trait.h"
+#include "common.hpp"
+#include "info/Class.hpp"
+#include "info/ConstantPool.hpp"
+#include "info/Exception.hpp"
+#include "info/Method.hpp"
+#include "info/Multiname.hpp"
+#include "info/Namespace.hpp"
+#include "info/Script.hpp"
+#include "info/Trait.hpp"
 
 namespace swf::abc {
 /* Represent an ABC file which contains compiled programs: constant data, instructions and various kinds of metdata

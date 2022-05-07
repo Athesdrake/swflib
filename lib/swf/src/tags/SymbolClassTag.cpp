@@ -1,4 +1,4 @@
-#include "swf/tags/SymbolClassTag.h"
+#include "swf/tags/SymbolClassTag.hpp"
 #include <unordered_map>
 
 namespace swf {

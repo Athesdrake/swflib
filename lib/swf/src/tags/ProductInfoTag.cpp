@@ -1,4 +1,4 @@
-#include "swf/tags/ProductInfoTag.h"
+#include "swf/tags/ProductInfoTag.hpp"
 
 namespace swf {
 void ProductInfoTag::read(StreamReader&& stream) {

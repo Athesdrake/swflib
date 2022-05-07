@@ -1,5 +1,5 @@
 #pragma once
-#include "abc/parser/Instruction.h"
+#include "abc/parser/Instruction.hpp"
 
 namespace swf::abc::parser {
 class Program {

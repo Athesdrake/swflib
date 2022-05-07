@@ -1,10 +1,10 @@
-#include "swflib.h"
+#include "swflib.hpp"
 #include <cmath>
 #include <iostream>
 #include <zlib.h>
-//#include "chrono.h"
+//#include "chrono.hpp"
 
-#include "bitstream.h"
+#include "bitstream.hpp"
 
 namespace swf {
 Swf::Swf() {

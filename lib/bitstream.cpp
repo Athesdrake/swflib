@@ -1,4 +1,4 @@
-#include "bitstream.h"
+#include "bitstream.hpp"
 #include <cmath>
 
 namespace swf {

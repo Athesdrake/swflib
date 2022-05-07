@@ -1,5 +1,5 @@
-#include "swf/swf.h"
-#include "modules.h"
+#include "swf/swf.hpp"
+#include "modules.hpp"
 #include <stdexcept>
 
 void init_swf(py::module& m) {

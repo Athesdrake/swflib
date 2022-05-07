@@ -1,5 +1,5 @@
-#include "abc/parser/Parser.h"
-#include "parse.h"
+#include "abc/parser/Parser.hpp"
+#include "parse.hpp"
 
 namespace swf::abc::parser {
 Parser::Parser(Method& method) : method(method) {

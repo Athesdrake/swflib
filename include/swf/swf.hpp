@@ -5,11 +5,11 @@
 #include <unordered_map>
 #include <vector>
 
-#include "abc/AbcFile.h"
-#include "datatypes.h"
-#include "errors.h"
-#include "stream.h"
-#include "tags/tags.h"
+#include "abc/AbcFile.hpp"
+#include "datatypes.hpp"
+#include "errors.hpp"
+#include "stream.hpp"
+#include "tags/tags.hpp"
 
 namespace swf {
 

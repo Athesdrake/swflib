@@ -1,4 +1,4 @@
-#include "swf/tags/FileAttributesTag.h"
+#include "swf/tags/FileAttributesTag.hpp"
 
 namespace swf {
 void FileAttributesTag::read(StreamReader&& stream) {

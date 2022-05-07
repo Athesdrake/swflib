@@ -1,4 +1,4 @@
-#include "abc/AbcFile.h"
+#include "abc/AbcFile.hpp"
 
 namespace swf::abc {
 AbcFile::AbcFile() {

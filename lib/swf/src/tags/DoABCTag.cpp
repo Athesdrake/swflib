@@ -1,5 +1,5 @@
-#include "swf/tags/DoABCTag.h"
-#include "abc/AbcFile.h"
+#include "swf/tags/DoABCTag.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf {
 void DoABCTag::read(StreamReader&& stream) {

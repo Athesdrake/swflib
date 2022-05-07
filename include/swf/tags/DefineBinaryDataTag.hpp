@@ -1,5 +1,5 @@
 #pragma once
-#include "Tag.h"
+#include "Tag.hpp"
 
 namespace swf {
 /* Represent a binary data embeded inside a SWF file.

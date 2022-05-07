@@ -1,7 +1,7 @@
 #pragma once
-#include "Multiname.h"
-#include "Namespace.h"
-#include "abc/common.h"
+#include "Multiname.hpp"
+#include "Namespace.hpp"
+#include "abc/common.hpp"
 
 namespace swf::abc {
 class ConstantPool {

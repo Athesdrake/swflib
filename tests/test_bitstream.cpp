@@ -1,5 +1,5 @@
-#include "bitstream.h"
-#include "test.h"
+#include "bitstream.hpp"
+#include "test.hpp"
 #include <cmath>
 #include <functional>
 

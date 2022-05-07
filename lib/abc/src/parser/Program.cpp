@@ -1,4 +1,4 @@
-#include "abc/parser/Program.h"
+#include "abc/parser/Program.hpp"
 
 namespace swf::abc::parser {
 Program::Program(std::shared_ptr<AbcFile> abc, Method& method) : abc(abc), method(method) {

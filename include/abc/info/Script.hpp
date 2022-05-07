@@ -1,6 +1,6 @@
 #pragma once
-#include "Trait.h"
-#include "abc/common.h"
+#include "Trait.hpp"
+#include "abc/common.hpp"
 
 namespace swf::abc {
 class Script {

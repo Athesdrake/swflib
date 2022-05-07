@@ -1,5 +1,5 @@
-#include "abc/info/Method.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Method.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf::abc {
 Method::Method(AbcFile* abc) : abc(abc) {

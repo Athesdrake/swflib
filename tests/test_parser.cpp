@@ -1,6 +1,6 @@
-#include "abc/parser/Parser.h"
-#include "swflib.h"
-#include "test.h"
+#include "abc/parser/Parser.hpp"
+#include "swflib.hpp"
+#include "test.hpp"
 #include <algorithm>
 
 int main(int argc, char* argv[]) {

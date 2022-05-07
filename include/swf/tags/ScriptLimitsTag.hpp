@@ -1,5 +1,5 @@
 #pragma once
-#include "Tag.h"
+#include "Tag.hpp"
 
 namespace swf {
 /* Settings for the script limits in the AVM2.
@@ -11,7 +11,7 @@ public:
 
     const std::string getTagName() override { return "ScriptLimitsTag"; };
 
-    uint16_t max_recursion_depth    = 256; // Set the max recursion limit. Default is 256
+    uint16_t max_recursion_depth = 256; // Set the max recursion limit. Default is 256
     // Set the maximum number of seconds the player should process ActionScript before asking if the script should be
     // stopped. The default value varies by platform and is between 15 and 20 seconds.
     uint16_t script_timeout_seconds = 20;

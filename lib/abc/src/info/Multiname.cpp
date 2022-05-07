@@ -1,5 +1,5 @@
-#include "abc/info/Multiname.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Multiname.hpp"
+#include "abc/AbcFile.hpp"
 #include <stdexcept>
 
 namespace swf::abc {

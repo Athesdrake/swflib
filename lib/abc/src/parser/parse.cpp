@@ -1,4 +1,4 @@
-#include "parse.h"
+#include "parse.hpp"
 #include <stdexcept>
 
 namespace swf::abc::parser {

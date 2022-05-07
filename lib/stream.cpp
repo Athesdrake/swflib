@@ -1,5 +1,5 @@
-#include "stream.h"
-#include "errors.h"
+#include "stream.hpp"
+#include "errors.hpp"
 
 #include <fstream>
 #include <lzma.h>

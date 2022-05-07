@@ -1,5 +1,5 @@
-#include "abc/info/Script.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Script.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf::abc {
 Script::Script(AbcFile* abc) : abc(abc) {

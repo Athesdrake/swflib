@@ -1,5 +1,5 @@
 #pragma once
-#include "stream.h"
+#include "stream.hpp"
 
 namespace swf {
 /* SWF uses twips as unit. A twip is 1/20th of a screen's pixel (without scaling). */

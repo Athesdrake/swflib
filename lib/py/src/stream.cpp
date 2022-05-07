@@ -1,4 +1,4 @@
-#include "modules.h"
+#include "modules.hpp"
 
 void init_stream(py::module& m) {
     py::class_<swf::StreamReader>(m, "StreamReader",

@@ -1,5 +1,5 @@
-#include "abc/info/Trait.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Trait.hpp"
+#include "abc/AbcFile.hpp"
 #include <stdexcept>
 
 namespace swf::abc {

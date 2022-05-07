@@ -1,4 +1,4 @@
-#include "swf/tags/EndTag.h"
+#include "swf/tags/EndTag.hpp"
 
 namespace swf {
 void EndTag::read(StreamReader&& stream) { }

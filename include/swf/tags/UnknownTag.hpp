@@ -1,5 +1,5 @@
 #pragma once
-#include "Tag.h"
+#include "Tag.hpp"
 
 namespace swf {
 /* Represent an unknown tag, not supported by the library.

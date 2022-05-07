@@ -1,5 +1,5 @@
-#include "swf/datatypes.h"
-#include "bitstream.h"
+#include "swf/datatypes.hpp"
+#include "bitstream.hpp"
 #include <sstream>
 
 namespace swf {

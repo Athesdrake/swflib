@@ -1,4 +1,4 @@
-#include "swf/tags/DefineBinaryDataTag.h"
+#include "swf/tags/DefineBinaryDataTag.hpp"
 
 namespace swf {
 StreamReader* DefineBinaryDataTag::getData() { return binary.get(); }

@@ -1,6 +1,6 @@
 #pragma once
-#include "stream.h"
-#include "swf/datatypes.h"
+#include "stream.hpp"
+#include "swf/datatypes.hpp"
 #include <functional>
 #include <iostream>
 #include <memory>

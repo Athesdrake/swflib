@@ -1,5 +1,5 @@
-#include "abc/info/Exception.h"
-#include "abc/AbcFile.h"
+#include "abc/info/Exception.hpp"
+#include "abc/AbcFile.hpp"
 
 namespace swf::abc {
 Exception::Exception(AbcFile* abc) : abc(abc) {

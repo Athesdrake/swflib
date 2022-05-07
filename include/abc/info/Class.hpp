@@ -1,6 +1,6 @@
 #pragma once
-#include "Trait.h"
-#include "abc/common.h"
+#include "Trait.hpp"
+#include "abc/common.hpp"
 
 #define CONSTANT_ClassSealed                                                                                           \
     0x01 // The class is sealed : properties can not be dynamically added to instances of the class.

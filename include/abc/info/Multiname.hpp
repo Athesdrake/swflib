@@ -1,5 +1,5 @@
 #pragma once
-#include "abc/common.h"
+#include "abc/common.hpp"
 
 namespace swf::abc {
 enum class MultinameKind : uint8_t {

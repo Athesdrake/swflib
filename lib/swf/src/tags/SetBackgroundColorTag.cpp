@@ -1,4 +1,4 @@
-#include "swf/tags/SetBackgroundColorTag.h"
+#include "swf/tags/SetBackgroundColorTag.hpp"
 
 namespace swf {
 void SetBackgroundColorTag::read(StreamReader&& stream) { color.read(stream); }

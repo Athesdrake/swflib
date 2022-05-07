@@ -1,7 +1,7 @@
 #pragma once
-#include "Exception.h"
-#include "Trait.h"
-#include "abc/common.h"
+#include "Exception.hpp"
+#include "Trait.hpp"
+#include "abc/common.hpp"
 
 #define NEED_ARGUMENTS                                                                                                 \
     0x01 // Suggests to the run - time that an �arguments� object(as specified by the ActionScript 3.0 Language

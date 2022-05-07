@@ -1,5 +1,5 @@
 #pragma once
-#include "stream.h"
+#include "stream.hpp"
 
 namespace swf {
 /* Utility class to read bits from a StreamReader.

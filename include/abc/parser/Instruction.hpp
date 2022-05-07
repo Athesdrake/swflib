@@ -1,6 +1,6 @@
 #pragma once
-#include "abc/AbcFile.h"
-#include "abc/parser/opcodes.h"
+#include "abc/AbcFile.hpp"
+#include "abc/parser/opcodes.hpp"
 
 namespace swf::abc::parser {
 class Instruction {
