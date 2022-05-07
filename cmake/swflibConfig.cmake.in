@@ -1,0 +1,6 @@
+get_filename_component(SWFLIB_CMAKE_DIR ${CMAKE_CURRENT_LIST_FILE} PATH)
+set(SWFLIB_INCLUDE_DIRS "@swflib_INCLUDE_DIRS@")
+
+if(NOT TARGET swflib)
+  include("${SWFLIB_CMAKE_DIR}/swflibTargets.cmake")
+endif()
