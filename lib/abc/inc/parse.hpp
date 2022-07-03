@@ -1,4 +1,5 @@
 #include "abc/parser/Instruction.hpp"
+#include <unordered_map>
 
 namespace swf::abc::parser {
 std::shared_ptr<Instruction> parse(
