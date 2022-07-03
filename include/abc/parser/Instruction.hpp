@@ -18,5 +18,11 @@ public:
 
     // Returns true if the instruction is a jump instruction
     bool isJump() const;
+
+    // Export the instruction to bytecode
+    void write(StreamWriter& stream);
+
+    // Get size of the bytecode
+    uint32_t size();
 };
 }

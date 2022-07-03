@@ -8,7 +8,7 @@ Parser::Parser(Method& method) : method(method) {
     std::unordered_multimap<uint32_t, std::pair<Instruction*, size_t>> targets;
     std::shared_ptr<Instruction> current;
     while (stream) {
-        auto ins = swf::abc::parser::parse(stream, targets);
+        auto ins = parse(stream, targets);
         if (begin == nullptr)
             begin = current = ins;
         else {
