@@ -11,24 +11,44 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 
 add_library(swflib SHARED "")
+add_library(swflib::swflib ALIAS swflib)
 add_subdirectory(lib)
+
+# Add the static version of the lib
+get_target_property(SWFLIB_SOURCES swflib SOURCES)
+add_library(swflib-static STATIC ${SWFLIB_SOURCES})
+add_library(swflib::swflib-static ALIAS swflib-static)
+
+# Get the private include directories
+get_target_property(SWFLIB_PRIVATE_INCLUDES swflib INCLUDE_DIRECTORIES)
+target_include_directories(swflib-static PRIVATE ${SWFLIB_PRIVATE_INCLUDES})
 
 # Remove the "lib" prefix
 set_target_properties(swflib PROPERTIES PREFIX "")
+set_target_properties(swflib-static PROPERTIES PREFIX "")
+set_target_properties(swflib-static PROPERTIES OUTPUT_NAME "swflib")
 
 # Add the header files
 target_include_directories(
   swflib PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
                 $<INSTALL_INTERFACE:include>)
+target_include_directories(
+  swflib-static PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                       $<INSTALL_INTERFACE:include>)
 
 # Find & link dependencies
 find_package(ZLIB REQUIRED)
 find_package(LibLZMA REQUIRED)
 target_link_libraries(swflib PRIVATE ZLIB::ZLIB)
 target_link_libraries(swflib PRIVATE LibLZMA::LibLZMA)
+target_link_libraries(swflib-static PRIVATE ZLIB::ZLIB)
+target_link_libraries(swflib-static PRIVATE LibLZMA::LibLZMA)
 
 # Install stuff
-export(TARGETS swflib FILE ${PROJECT_BINARY_DIR}/swflibTargets.cmake)
+export(
+  TARGETS swflib swflib-static
+  NAMESPACE swflib::
+  FILE ${PROJECT_BINARY_DIR}/swflibTargets.cmake)
 export(PACKAGE swflib)
 
 file(RELATIVE_PATH REL_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/lib/CMake/swflib
@@ -42,7 +62,7 @@ configure_file(
   ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/swflibConfig.cmake @ONLY)
 
 install(
-  TARGETS swflib
+  TARGETS swflib swflib-static
   EXPORT swflibTargets
   RUNTIME DESTINATION bin COMPONENT bin
   LIBRARY DESTINATION lib COMPONENT shlib
