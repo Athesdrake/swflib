@@ -204,7 +204,7 @@ std::shared_ptr<Instruction> parse(
 
         uint32_t count = stream.readU30() + 1;
         for (auto i = 1; i <= count; ++i) {
-            target = stream.readS24();
+            target = addr + stream.readS24();
             jump_targets.emplace(target, std::make_pair(ins.get(), i));
             ins->args.push_back(target);
             ins->targets.emplace_back();
