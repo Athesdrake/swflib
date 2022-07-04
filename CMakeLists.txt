@@ -64,8 +64,9 @@ configure_file(
 install(
   TARGETS swflib swflib-static
   EXPORT swflibTargets
-  RUNTIME DESTINATION bin COMPONENT bin
+  ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib COMPONENT shlib
+  RUNTIME DESTINATION bin COMPONENT bin
   PUBLIC_HEADER DESTINATION include/swflib COMPONENT dev)
 install(
   FILES ${PROJECT_BINARY_DIR}/${CMAKE_FILES_DIRECTORY}/swflibConfig.cmake
