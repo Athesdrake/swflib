@@ -6,8 +6,8 @@ ARG BUILD_TYPE=Release
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends g++ git cmake make curl zip unzip tar pkg-config ca-certificates && \
-    git clone https://github.com/microsoft/vcpkg && \
-    rm -rf /var/lib/apt/lists/* /vcpkg/.git && \
+    git clone --depth 1 https://github.com/microsoft/vcpkg && \
+    rm -rf /var/lib/apt/lists/* && \
     /vcpkg/bootstrap-vcpkg.sh -disableMetrics && \
     /vcpkg/vcpkg install zlib liblzma
 

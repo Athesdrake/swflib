@@ -6,8 +6,7 @@ ARG BUILD_TYPE=Release
 
 RUN apk update && \
     apk add --no-cache build-base cmake ninja zip unzip curl git pkgconfig linux-headers ca-certificates && \
-    git clone https://github.com/microsoft/vcpkg && \
-    rm -rf /vcpkg/.git && \
+    git clone --depth 1 https://github.com/microsoft/vcpkg && \
     /vcpkg/bootstrap-vcpkg.sh -disableMetrics && \
     VCPKG_FORCE_SYSTEM_BINARIES=1 /vcpkg/vcpkg install zlib liblzma --no-binarycaching
 
