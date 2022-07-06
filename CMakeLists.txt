@@ -41,8 +41,8 @@ find_package(ZLIB REQUIRED)
 find_package(LibLZMA REQUIRED)
 target_link_libraries(swflib PRIVATE ZLIB::ZLIB)
 target_link_libraries(swflib PRIVATE LibLZMA::LibLZMA)
-target_link_libraries(swflib-static PRIVATE ZLIB::ZLIB)
-target_link_libraries(swflib-static PRIVATE LibLZMA::LibLZMA)
+target_link_libraries(swflib-static PUBLIC ZLIB::ZLIB)
+target_link_libraries(swflib-static PUBLIC LibLZMA::LibLZMA)
 
 # Install stuff
 export(
