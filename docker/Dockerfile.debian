@@ -1,0 +1,20 @@
+FROM debian:stable-slim as build-stage
+
+ARG VCPKG_TOOLCHAIN="-DCMAKE_TOOLCHAIN_FILE=/vcpkg/scripts/buildsystems/vcpkg.cmake"
+ARG PY_EXT=OFF
+ARG BUILD_TYPE=Release
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends g++ git cmake make curl zip unzip tar pkg-config ca-certificates && \
+    git clone https://github.com/microsoft/vcpkg && \
+    rm -rf /var/lib/apt/lists/* /vcpkg/.git && \
+    /vcpkg/bootstrap-vcpkg.sh -disableMetrics && \
+    /vcpkg/vcpkg install zlib liblzma
+
+WORKDIR /src/swflib
+COPY . .
+
+WORKDIR /build/swflib
+RUN cmake /src/swflib $VCPKG_TOOLCHAIN -DPY_EXT=$PY_EXT -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
+    cmake --build . && \
+    cmake --install .

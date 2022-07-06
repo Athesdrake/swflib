@@ -1,0 +1,6 @@
+*
+!cmake/
+!include/
+!lib/
+!tests/
+!CMakeLists.txt

@@ -1,0 +1,20 @@
+FROM alpine:latest as build-stage
+
+ARG VCPKG_TOOLCHAIN="-DCMAKE_TOOLCHAIN_FILE=/vcpkg/scripts/buildsystems/vcpkg.cmake"
+ARG PY_EXT=OFF
+ARG BUILD_TYPE=Release
+
+RUN apk update && \
+    apk add --no-cache build-base cmake ninja zip unzip curl git pkgconfig linux-headers ca-certificates && \
+    git clone https://github.com/microsoft/vcpkg && \
+    rm -rf /vcpkg/.git && \
+    /vcpkg/bootstrap-vcpkg.sh -disableMetrics && \
+    VCPKG_FORCE_SYSTEM_BINARIES=1 /vcpkg/vcpkg install zlib liblzma --no-binarycaching
+
+WORKDIR /src/swflib
+COPY . .
+
+WORKDIR /build/swflib
+RUN cmake /src/swflib $VCPKG_TOOLCHAIN -DPY_EXT=$PY_EXT -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
+    cmake --build . && \
+    cmake --install .
