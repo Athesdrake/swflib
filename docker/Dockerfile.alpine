@@ -1,19 +1,27 @@
 FROM alpine:latest as build-stage
 
-ARG VCPKG_TOOLCHAIN="-DCMAKE_TOOLCHAIN_FILE=/vcpkg/scripts/buildsystems/vcpkg.cmake"
+ARG CMAKE_GENERATOR=Ninja
+ARG CMAKE_BUILD_TYPE=Release
+ARG CMAKE_TOOLCHAIN_FILE="/vcpkg/scripts/buildsystems/vcpkg.cmake"
+# Ask vcpkg to use system binaries.
+# Alpine uses musl and some dependencies could fail to compile without this enabled
+ARG VCPKG_FORCE_SYSTEM_BINARIES=1
 ARG PY_EXT=OFF
-ARG BUILD_TYPE=Release
+
+# Set the env variables for the child images
+ENV CMAKE_GENERATOR=${CMAKE_GENERATOR}
+ENV CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+ENV VCPKG_FORCE_SYSTEM_BINARIES=${VCPKG_FORCE_SYSTEM_BINARIES}
 
 RUN apk update && \
     apk add --no-cache build-base cmake ninja zip unzip curl git pkgconfig linux-headers ca-certificates && \
     git clone --depth 1 https://github.com/microsoft/vcpkg && \
-    /vcpkg/bootstrap-vcpkg.sh -disableMetrics && \
-    VCPKG_FORCE_SYSTEM_BINARIES=1 /vcpkg/vcpkg install zlib liblzma --no-binarycaching
+    /vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
 WORKDIR /src/swflib
 COPY . .
 
 WORKDIR /build/swflib
-RUN cmake /src/swflib $VCPKG_TOOLCHAIN -DPY_EXT=$PY_EXT -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
+RUN cmake /src/swflib -DPY_EXT=$PY_EXT && \
     cmake --build . && \
     cmake --install .

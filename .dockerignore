@@ -4,3 +4,6 @@
 !lib/
 !tests/
 !CMakeLists.txt
+!LICENSE
+!README.md
+!vcpkg.json
