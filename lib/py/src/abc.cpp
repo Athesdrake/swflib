@@ -161,7 +161,7 @@ void init_abc(py::module& m, py::class_<AbcFile> abc) {
     py::class_<Multiname::MultinameData::MultinameL>(m, "MD_MultinameL")
         .def_readwrite("ns_set", &Multiname::MultinameData::MultinameL::ns_set);
     py::class_<Multiname::MultinameData::TypeName>(m, "MD_TypeName")
-        .def_readwrite("ns_set", &Multiname::MultinameData::TypeName::ns_set);
+        .def_readwrite("qname", &Multiname::MultinameData::TypeName::qname);
     py::class_<Multiname::MultinameData>(m, "MultinameData")
         .def_readwrite("qname", &Multiname::MultinameData::qname)
         .def_readwrite("rtqname", &Multiname::MultinameData::rtqname)

@@ -40,7 +40,7 @@ public:
         } multiname_l;
 
         struct TypeName {
-            uint32_t ns_set;
+            uint32_t qname;
         } type_name;
     } data;
 

@@ -38,7 +38,7 @@ void Multiname::read(StreamReader& stream) {
         data.multiname_l.ns_set = stream.readU30();
         break;
     case MultinameKind::Typename: {
-        data.type_name.ns_set = stream.readU30();
+        data.type_name.qname = stream.readU30();
         types.resize(stream.readU30());
         for (auto& type : types)
             type = stream.readU30();
@@ -78,7 +78,7 @@ void Multiname::write(StreamWriter& stream) {
         stream.writeU30(data.multiname_l.ns_set);
         break;
     case MultinameKind::Typename:
-        stream.writeU30(data.type_name.ns_set);
+        stream.writeU30(data.type_name.qname);
         stream.writeU30((uint32_t)types.size());
         for (auto type : types)
             stream.writeU30(type);
