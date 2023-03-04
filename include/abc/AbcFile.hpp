@@ -3,6 +3,7 @@
 #include "info/Class.hpp"
 #include "info/ConstantPool.hpp"
 #include "info/Exception.hpp"
+#include "info/Metadata.hpp"
 #include "info/Method.hpp"
 #include "info/Multiname.hpp"
 #include "info/Namespace.hpp"
@@ -22,6 +23,7 @@ public:
     std::vector<Method> methods; // list of all abc's methods
     std::vector<Class> classes; // list of all abc's classes
     std::vector<Script> scripts; // list of all abc's scripts
+    std::vector<Metadata> metadatas; // list of all abc's metadatas
 
     AbcFile();
     AbcFile(StreamReader& stream);

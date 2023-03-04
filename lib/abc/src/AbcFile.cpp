@@ -61,7 +61,10 @@ void AbcFile::write(StreamWriter& stream) {
 
     auto bodies = write_methods(stream);
 
-    stream.writeU30(0); // metadatas
+    count = (uint32_t)metadatas.size();
+    stream.writeU30(count);
+    for (unsigned i = 0; i < count; i++)
+        metadatas[i].write(stream);
 
     count = (uint32_t)classes.size();
     stream.writeU30(count);
@@ -89,12 +92,9 @@ void AbcFile::read(StreamReader& stream) {
     read_methods(stream);
 
     count = stream.readU30();
-    // skip metadate, maybe add support in the future?
     for (unsigned i = 0; i < count; i++) {
-        stream.skip30();
-        count2 = stream.readU30();
-        for (unsigned j = 0; j < count2; j++)
-            stream.skip30(2);
+        metadatas[i] = Metadata(this);
+        metadatas[i].read(stream);
     }
 
     count = stream.readU30();

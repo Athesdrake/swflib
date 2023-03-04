@@ -47,12 +47,18 @@ void Trait::read(StreamReader& stream) {
 
     if (attr & TraitAttr::Metadata) {
         auto count = stream.readU30();
+        metadatas.resize(count);
         for (uint32_t i = 0; i < count; i++)
-            stream.skip30();
+            metadatas[i] = stream.readU30();
     }
 }
 
 void Trait::write(StreamWriter& stream) {
+    if (metadatas.empty())
+        attr &= ~TraitAttr::Metadata;
+    else
+        attr |= uint8_t(TraitAttr::Metadata);
+
     stream.writeU30(name);
     stream.writeU8((attr << 4) | uint8_t(kind));
 
@@ -77,8 +83,11 @@ void Trait::write(StreamWriter& stream) {
         break;
     }
 
-    if (attr & TraitAttr::Metadata)
-        stream.writeU30(0);
+    if (attr & TraitAttr::Metadata) {
+        stream.writeU30(metadatas.size());
+        for (auto& metadata : metadatas)
+            stream.writeU30(metadata);
+    }
 }
 
 std::string Trait::toString() {

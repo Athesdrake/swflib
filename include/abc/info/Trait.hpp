@@ -41,7 +41,7 @@ public:
         uint32_t type;
         uint8_t kind;
     } slot;
-    // std::vector<uint32_t> metadatas;
+    std::vector<uint32_t> metadatas;
 
     Trait(AbcFile* abc);
     Trait() : Trait(nullptr) { }

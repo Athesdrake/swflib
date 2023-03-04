@@ -4,6 +4,7 @@ target_sources(
           ConstantPool.cpp
           Exception.cpp
           Method.cpp
+          Metadata.cpp
           Multiname.cpp
           Namespace.cpp
           Script.cpp
