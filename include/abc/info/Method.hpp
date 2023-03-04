@@ -3,23 +3,35 @@
 #include "Trait.hpp"
 #include "abc/common.hpp"
 
-#define NEED_ARGUMENTS                                                                                                 \
-    0x01 // Suggests to the run - time that an �arguments� object(as specified by the ActionScript 3.0 Language
-         // Reference) be created.Must not be used together with NEED_REST.
-#define NEED_ACTIVATION 0x02 // Must be set if this method uses the newactivation opcode.
-#define NEED_REST                                                                                                      \
-    0x04 // This flag creates an ActionScript 3.0 rest arguments array.Must not be used with NEED_ARGUMENTS.
-#define HAS_OPTIONAL                                                                                                   \
-    0x08 // Must be set if this method has optional parameters and the options field is present in this method_info
-         // structure.
-#define SET_DXNS 0x40 // Must be set if this method uses the dxns or dxnslate opcodes.
-#define HAS_PARAM_NAMES 0x80 // Must be set when the param_names field is present in this method_info structure.
-
 namespace swf::abc {
 struct Option {
     uint32_t value;
     uint8_t kind;
 };
+
+enum class MethodFlag : uint8_t {
+    // Suggests to the runtime that an `arguments` object (as specified by the ActionScript 3.0 Language Reference) be
+    // created. Must not be used together with NeedRest.
+    NeedArguments = 0x01,
+    // Must be set if this method uses the newactivation opcode.
+    NeedActivation = 0x02,
+    // This flag creates an ActionScript 3.0 rest arguments array.Must not be used with NeedArguments.
+    NeedRest = 0x04,
+    // Must be set if this method has optional parameters and the options field is present in this
+    // method_info structure.
+    HasOptional = 0x08,
+    // Must be set if this method uses the dxns or dxnslate opcodes.
+    SetDxns = 0x40,
+    // Must be set when the param_names field is present in this method_info structure.
+    HasParamNames = 0x80
+};
+constexpr uint8_t operator~(const MethodFlag lhs) { return ~static_cast<uint8_t>(lhs); }
+constexpr uint8_t operator&(const uint8_t lhs, const MethodFlag rhs) { return lhs & static_cast<uint8_t>(rhs); }
+constexpr uint8_t operator|(const uint8_t lhs, const MethodFlag rhs) { return lhs | static_cast<uint8_t>(rhs); }
+constexpr uint8_t operator&(const MethodFlag lhs, const MethodFlag rhs) { return static_cast<uint8_t>(lhs) & rhs; }
+constexpr uint8_t operator|(const MethodFlag lhs, const MethodFlag rhs) { return static_cast<uint8_t>(lhs) | rhs; }
+constexpr uint8_t operator&=(uint8_t& lhs, const MethodFlag rhs) { return lhs &= static_cast<uint8_t>(rhs); }
+constexpr uint8_t operator|=(uint8_t& lhs, const MethodFlag rhs) { return lhs |= static_cast<uint8_t>(rhs); }
 
 class Method {
 public:

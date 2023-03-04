@@ -111,17 +111,17 @@ void Method::write_body(StreamWriter& stream) {
 
 void Method::checkFlags() {
     if (optional.size())
-        flags |= HAS_OPTIONAL;
+        flags |= MethodFlag::HasOptional;
 
     if (param_names.size())
-        flags |= HAS_PARAM_NAMES;
+        flags |= MethodFlag::HasParamNames;
 }
 
-bool Method::has_optional() const { return flags & HAS_OPTIONAL; }
+bool Method::has_optional() const { return flags & MethodFlag::HasOptional; }
 
-bool Method::has_param_names() const { return flags & HAS_PARAM_NAMES; }
+bool Method::has_param_names() const { return flags & MethodFlag::HasParamNames; }
 
-bool Method::need_rest() const { return flags & NEED_REST; }
+bool Method::need_rest() const { return flags & MethodFlag::NeedRest; }
 
 bool Method::has_body() const { return code.size(); }
 

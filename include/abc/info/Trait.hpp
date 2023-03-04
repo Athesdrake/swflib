@@ -12,14 +12,21 @@ enum class TraitKind : uint8_t {
     Const    = 6,
 };
 
-enum TraitAttributes {
-    Final = 0x01, // Is used with Trait_Method, Trait_Getter and Trait_Setter.It marks a method that cannot be
-                  // overridden by a sub - class
-    Override = 0x02, // Is used with Trait_Method, Trait_Getter and Trait_Setter.It marks a method that has been
-                     // overridden in this class
-    Metadata = 0x04, // Is used to signal that the fields metadata_count and metadata follow the data field in the
-                     // traits_info entry
+enum class TraitAttr : uint8_t {
+    // Used with Trait_Method, Trait_Getter and Trait_Setter.
+    // It marks a method that cannot be overridden by a sub-class
+    Final = 0x01,
+    // Used with Trait_Method, Trait_Getter and Trait_Setter
+    // It marks a method that has been overridden in this class
+    Override = 0x02,
+    // Used to signal that the fields metadata_count and metadata follow the data field in the traits_info entry
+    Metadata = 0x04,
 };
+constexpr uint8_t operator~(const TraitAttr lhs) { return ~static_cast<uint8_t>(lhs); }
+constexpr uint8_t operator&(const uint8_t lhs, const TraitAttr rhs) { return lhs & static_cast<uint8_t>(rhs); }
+constexpr uint8_t operator|(const uint8_t lhs, const TraitAttr rhs) { return lhs | static_cast<uint8_t>(rhs); }
+constexpr uint8_t operator&(const TraitAttr lhs, const TraitAttr rhs) { return static_cast<uint8_t>(lhs) & rhs; }
+constexpr uint8_t operator|(const TraitAttr lhs, const TraitAttr rhs) { return static_cast<uint8_t>(lhs) | rhs; }
 
 class Trait {
 public:

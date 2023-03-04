@@ -45,7 +45,7 @@ void Trait::read(StreamReader& stream) {
         break;
     }
 
-    if (attr & Metadata) { // Metadata is useless so we ignore it
+    if (attr & TraitAttr::Metadata) {
         auto count = stream.readU30();
         for (uint32_t i = 0; i < count; i++)
             stream.skip30();
@@ -77,7 +77,7 @@ void Trait::write(StreamWriter& stream) {
         break;
     }
 
-    if (attr & Metadata)
+    if (attr & TraitAttr::Metadata)
         stream.writeU30(0);
 }
 

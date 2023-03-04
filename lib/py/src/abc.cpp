@@ -57,10 +57,10 @@ void init_abc(py::module& m, py::class_<AbcFile> abc) {
         .value("Function", TraitKind::Function)
         .value("Const", TraitKind::Const);
 
-    py::enum_<TraitAttributes>(m, "TraitAttributes")
-        .value("Final", TraitAttributes::Final)
-        .value("Override", TraitAttributes::Override)
-        .value("Metadata", TraitAttributes::Metadata);
+    py::enum_<TraitAttr>(m, "TraitAttr")
+        .value("Final", TraitAttr::Final)
+        .value("Override", TraitAttr::Override)
+        .value("Metadata", TraitAttr::Metadata);
 
     py::class_<Trait> trait(m, "Trait");
 
