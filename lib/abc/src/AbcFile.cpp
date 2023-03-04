@@ -117,13 +117,69 @@ void AbcFile::read(StreamReader& stream) {
     read_bodies(stream);
 }
 
-// std::vector<Namespace> AbcFile::get_namespace_set(uint32_t index) {
-//     auto nss = cpool.ns_sets[index];
-//     std::vector<Namespace> resolved(nss.size());
+std::string& AbcFile::qname(uint32_t& index) { return qname(cpool.multinames[index]); }
+std::string& AbcFile::qname(Multiname& mn) { return cpool.strings[mn.get_name_index()]; }
 
-//     for (auto i = 0; i < nss.size(); ++i)
-//         resolved[i] = cpool.namespaces[nss[i]];
+std::string AbcFile::str(std::vector<uint32_t>& ns_set) {
+    std::string name = "";
+    for (auto& index : ns_set) {
+        if (!name.empty())
+            name += "::";
+        name += str(cpool.namespaces[index]);
+    }
+    return name;
+}
 
-//     return resolved;
-// }
+std::string& AbcFile::str(Namespace& ns) { return cpool.strings[ns.name]; }
+std::string AbcFile::str(uint32_t& index) { return str(cpool.multinames[index]); }
+std::string AbcFile::str(Multiname& mn) {
+    if (mn.kind == MultinameKind::Typename) {
+        std::string types;
+        if (!mn.types.empty()) {
+            for (auto& type : mn.types)
+                types += ',' + (type == 0 ? "*" : str(type));
+
+            types.front() = '<';
+            types += '>';
+        }
+
+        return str(mn.data.type_name.qname) + types;
+    }
+
+    if (mn.kind == MultinameKind::MultinameL || mn.kind == MultinameKind::MultinameLA)
+        return str(cpool.ns_sets[mn.data.multiname_l.ns_set]);
+
+    return qname(mn);
+}
+
+std::string AbcFile::ns(Multiname& mn) {
+    switch (mn.kind) {
+    case MultinameKind::QName:
+    case MultinameKind::QNameA:
+        if (mn.data.qname.ns == 0)
+            return "";
+
+        return str(cpool.namespaces[mn.data.qname.ns]);
+    case MultinameKind::RTQName:
+    case MultinameKind::RTQNameA:
+    case MultinameKind::RTQNameL:
+    case MultinameKind::RTQNameLA:
+        // RTQName does not have namespaces
+        return "";
+    case MultinameKind::Multiname:
+    case MultinameKind::MultinameA:
+    case MultinameKind::MultinameL:
+    case MultinameKind::MultinameLA:
+        return str(cpool.ns_sets[mn.data.multiname.ns_set]);
+    default:
+        return "";
+    }
+}
+
+std::string AbcFile::fqn(Class& klass) {
+    auto& mn    = cpool.multinames[klass.name];
+    auto namesp = ns(mn);
+    auto name   = mn.data.qname.name == 0 ? "*" : cpool.strings[mn.data.qname.name];
+    return namesp.empty() ? name : namesp + "::" + name;
+}
 }
