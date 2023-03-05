@@ -1,7 +1,7 @@
 {
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
     "name": "swflib",
-    "version-string": "0.3.0",
+    "version-string": "0.4.0",
     "description": "SWF & ActionScript Bytecode parsing library",
     "license": "MIT",
     "dependencies": [
