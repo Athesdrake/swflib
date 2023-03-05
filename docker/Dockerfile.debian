@@ -1,19 +1,34 @@
 FROM debian:stable-slim as build-stage
 
+ARG CMAKE_GENERATOR=Ninja
+ARG CMAKE_BUILD_TYPE=Release
 ARG CMAKE_TOOLCHAIN_FILE="/vcpkg/scripts/buildsystems/vcpkg.cmake"
 ARG PY_EXT=OFF
-ARG BUILD_TYPE=Release
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends g++ git cmake make curl zip unzip tar pkg-config ca-certificates && \
+# Set the env variables for the child images
+ENV CMAKE_GENERATOR=${CMAKE_GENERATOR}
+ENV CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}
+
+# Install decent version of cmake
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && \
+    apt-get install -y --no-install-recommends gpg curl ca-certificates && \
+    curl https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null && \
+    echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ focal main' | tee /etc/apt/sources.list.d/kitware.list >/dev/null && \
+    apt-get update && \
+    rm /usr/share/keyrings/kitware-archive-keyring.gpg && \
+    apt-get install -y --no-install-recommends kitware-archive-keyring
+
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && \
+    apt-get install -y --no-install-recommends g++ git cmake ninja-build make zip unzip tar pkg-config && \
     git clone --depth 1 https://github.com/microsoft/vcpkg && \
-    rm -rf /var/lib/apt/lists/* && \
     /vcpkg/bootstrap-vcpkg.sh -disableMetrics
 
 WORKDIR /src/swflib
 COPY . .
 
 WORKDIR /build/swflib
-RUN cmake /src/swflib -DPY_EXT=$PY_EXT -DCMAKE_BUILD_TYPE=$BUILD_TYPE && \
+RUN cmake /src/swflib -DPY_EXT=$PY_EXT && \
     cmake --build . && \
     cmake --install .
