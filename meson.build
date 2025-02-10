@@ -2,7 +2,7 @@ project(
     'swflib',
     'cpp',
     default_options: ['cpp_std=c++17'],
-    version: '0.4.0',
+    version: '0.4.1',
 )
 
 zlib = dependency('zlib')
