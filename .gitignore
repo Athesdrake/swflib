@@ -1,2 +1,6 @@
 .vscode/
 build/
+builddir/
+
+/subprojects/*
+!/subprojects/*.wrap
