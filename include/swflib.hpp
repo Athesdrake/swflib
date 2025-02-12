@@ -4,5 +4,5 @@
 #include "swf/swf.hpp"
 
 namespace swf {
-constexpr const char* version = "0.4.1";
+constexpr const char* version = "0.4.2";
 }
