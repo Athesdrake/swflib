@@ -4,9 +4,6 @@
 #include <fstream>
 #include <lzma.h>
 #include <zlib.h>
-#ifdef _WIN32
-#include <Windows.h>
-#endif
 
 namespace swf {
 StreamReader::StreamReader(const uint8_t* buffer, const uint8_t* end, bool managed) : managed(managed) {
@@ -22,33 +19,16 @@ StreamReader::~StreamReader() {
 }
 
 std::unique_ptr<StreamReader> StreamReader::fromfile(std::string filename) {
-#ifdef _WIN32
-    HANDLE fp;
-    if ((fp = CreateFile(filename, GENERIC_READ, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL))
-        == INVALID_HANDLE_VALUE)
-#else
     std::ifstream file(filename, std::ifstream::ate | std::ifstream::binary);
     if (file.fail())
-#endif
         throw std::runtime_error("No such file or directory: '" + filename + "'");
 
-#ifdef _WIN32
-    DWORD size = GetFileSize(fp, NULL);
-#else
     size_t size = (size_t)file.tellg();
     file.seekg(0, std::ios::beg);
-#endif
     uint8_t* buffer = new uint8_t[size];
 
-#ifdef _WIN32
-    if (FALSE == ReadFile(fp, buffer, size, NULL, NULL))
-        throw std::runtime_error("File not found: No such file or directory: '" + filename + "'");
-
-    CloseHandle(fp);
-#else
     file.read((char*)buffer, size);
     file.close();
-#endif
     return std::make_unique<StreamReader>(buffer, buffer + size);
 }
 
